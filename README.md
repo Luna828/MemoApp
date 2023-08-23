@@ -26,11 +26,15 @@
 
 ## Memo App 구조
 
+
 ## UI 화면
 <table>
   <tr>
     <td>
-      <img src="https://github.com/Luna828/MemoApp/assets/93186591/ef37f1fb-85ce-4741-b442-af6cedca1fa9" width="150" height="250">
+      <img src="https://github.com/Luna828/MemoApp/assets/93186591/ef37f1fb-85ce-4741-b442-af6cedca1fa9" width="200" height="300">
+       <img src="https://github.com/Luna828/MemoApp/assets/93186591/d8ea6900-c3d4-4047-bebf-8e54468b369f" width="200" height="300">
+       <img src="https://github.com/Luna828/MemoApp/assets/93186591/c88c7bfb-e253-4738-bd74-0db274ef0b1e" width="200" height="300">
+       <img src="https://github.com/Luna828/MemoApp/assets/93186591/fc14e82e-39b3-4acf-889f-34ae96bb9421" width="200" height="300">
     </td>
   </tr>
 </table>
