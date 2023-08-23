@@ -5,26 +5,27 @@
 //  Created by t2023-m0050 on 2023/08/22.
 //
 
-import UIKit
 import CoreData
+import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-            // 13이상인 경우에는 SceneDelegate에서 이미 초기화 되었으니까 바로 return
-            if #available(iOS 13.0, *) {
-                return true
-            }
-            
-            // 13이전의 경우에는 SceneDelegate에서 해주었던 작업을 그대로 진행해주면 된다.
-        window = UIWindow(frame: UIScreen.main.bounds)
-            window?.rootViewController = ViewController() // 시작 VC 작성해주기
-            window?.makeKeyAndVisible()
+        // 13이상인 경우에는 SceneDelegate에서 이미 초기화 되었으니까 바로 return
+        if #available(iOS 13.0, *) {
             return true
         }
+
+        // 13이전의 경우에는 SceneDelegate에서 해주었던 작업을 그대로 진행해주면 된다.
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = ViewController() // 시작 VC 작성해주기
+        window?.makeKeyAndVisible()
+
+        return true
+    }
+
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
@@ -43,17 +44,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     lazy var persistentContainer: NSPersistentContainer = {
         /*
-         The persistent container for the application. This implementation
-         creates and returns a container, having loaded the store for the
-         application to it. This property is optional since there are legitimate
-         error conditions that could cause the creation of the store to fail.
-        */
+          The persistent container for the application. This implementation
+          creates and returns a container, having loaded the store for the
+          application to it. This property is optional since there are legitimate
+          error conditions that could cause the creation of the store to fail.
+         */
         let container = NSPersistentContainer(name: "Memo")
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+        container.loadPersistentStores(completionHandler: { _, error in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                 
+
                 /*
                  Typical reasons for an error here include:
                  * The parent directory does not exist, cannot be created, or disallows writing.
@@ -70,7 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - Core Data Saving support
 
-    func saveContext () {
+    func saveContext() {
         let context = persistentContainer.viewContext
         if context.hasChanges {
             do {
@@ -83,6 +84,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-
 }
-

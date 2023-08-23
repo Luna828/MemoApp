@@ -1,8 +1,8 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
     let apiManager = APIManager()
+    let todoManager = TodoManager()
     let IMG_URL = "https://static.wikia.nocookie.net/shinchan/images/d/d8/Shinnoske.jpg/revision/latest?cb=20131020030755&path-prefix=ko"
 
     override func viewDidLoad() {
@@ -52,9 +52,33 @@ class ViewController: UIViewController {
         }
         
         let todoViewController = TodoViewController()
-        self.navigationController?.pushViewController(todoViewController, animated: true)
+        navigationController?.pushViewController(todoViewController, animated: true)
     }
+
     @objc func doneBtn() {
         print("Go to Done Page")
+        
+        let alertController = UIAlertController(title: "Todo 생성", message: nil, preferredStyle: .alert)
+        
+        // 알림창에 입력 필드 추가
+        alertController.addTextField { textField in
+            textField.placeholder = "할 일을 입력해주세요"
+        }
+        
+        // 알림창 버튼 추가
+        alertController.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: "생성", style: .default) { _ in
+            // 사용자 입력 정보 확인 및 처리
+            if let contentField = alertController.textFields?.first,
+               let content = contentField.text
+            {
+                let newTodo = Todo(uuid: UUID(), content: content, isCompleted: false)
+                
+                self.todoManager.addTodo(newTodo)
+            }
+        })
+
+        // 알림창 표시
+        present(alertController, animated: true, completion: nil)
     }
 }

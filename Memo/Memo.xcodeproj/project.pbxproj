@@ -53,6 +53,23 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		FB7E6C082A95AEE900785E66 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FBEB412D2A949CCC00718159 /* ViewController.swift */,
+				FBEB41472A95021B00718159 /* TodoViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		FB7E6C092A95AF2400785E66 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				FBEB41452A94D0B000718159 /* APIManager.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		FBEB411D2A949CCC00718159 = {
 			isa = PBXGroup;
 			children = (
@@ -72,17 +89,16 @@
 		FBEB41282A949CCC00718159 /* Memo */ = {
 			isa = PBXGroup;
 			children = (
-				FB7E6C072A95840500785E66 /* Model */,
+				FB7E6C092A95AF2400785E66 /* API */,
 				FBEB41422A94A29000718159 /* Components.swift */,
+				FB7E6C082A95AEE900785E66 /* Controller */,
+				FB7E6C072A95840500785E66 /* Model */,
+				FBEB41322A949CCC00718159 /* Memo.xcdatamodeld */,
+				FBEB413A2A949CCD00718159 /* Info.plist */,
+				FBEB41372A949CCD00718159 /* LaunchScreen.storyboard */,
+				FBEB41352A949CCD00718159 /* Assets.xcassets */,
 				FBEB41292A949CCC00718159 /* AppDelegate.swift */,
 				FBEB412B2A949CCC00718159 /* SceneDelegate.swift */,
-				FBEB412D2A949CCC00718159 /* ViewController.swift */,
-				FBEB41352A949CCD00718159 /* Assets.xcassets */,
-				FBEB41372A949CCD00718159 /* LaunchScreen.storyboard */,
-				FBEB413A2A949CCD00718159 /* Info.plist */,
-				FBEB41322A949CCC00718159 /* Memo.xcdatamodeld */,
-				FBEB41452A94D0B000718159 /* APIManager.swift */,
-				FBEB41472A95021B00718159 /* TodoViewController.swift */,
 			);
 			path = Memo;
 			sourceTree = "<group>";

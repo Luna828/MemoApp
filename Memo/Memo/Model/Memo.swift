@@ -1,60 +1,60 @@
 import Foundation
 
 //저장을 원하는 타입에 Codable protocol 채택
-struct Memo: Codable {
+struct Todo: Codable {
     let uuid: UUID
-    var title: String
     var content: String
+    var isCompleted: Bool
 }
 
-class MemoManager {
-    private let memoKey = "memoKey"
+class TodoManager {
+    private let todoKey = "todoKey"
     
     // 메모 읽어오기
-    func getMemos() -> [Memo] {
-        if let memosData = UserDefaults.standard.data(forKey: memoKey),
+    func getTodos() -> [Todo] {
+        if let todosData = UserDefaults.standard.data(forKey: todoKey),
            //JsonDecoder를 사용하여 저장된 데이터 가져오기
-           let memos = try? JSONDecoder().decode([Memo].self, from: memosData) {
-            return memos
+           let todos = try? JSONDecoder().decode([Todo].self, from: todosData) {
+            return todos
         }
         return []
     }
     
     // 메모 추가
-    func addMemo(_ memo: Memo) {
-        var savedMemos = getMemos()
-        savedMemos.append(memo)
-        saveMemos(savedMemos) // 메소드 이름 수정: saveMemo -> saveMemos
+    func addTodo(_ todo: Todo) {
+        var savedTodos = getTodos()
+        savedTodos.append(todo)
+        saveTodos(savedTodos) // 메소드 이름 수정: saveMemo -> saveMemos
     }
     
     // 메모 수정
-    func updateMemo(at index: Int, with newTitle: String, newContent: String) {
-        var savedMemos = getMemos()
+    func updateTodo(at index: Int, with newContent: String, isCompleted: Bool) {
+        var savedTodos = getTodos()
         
-        guard index >= 0, index < savedMemos.count else {
+        guard index >= 0, index < savedTodos.count else {
             return
         }
         
-        var memoToUpdate = savedMemos[index]
-        memoToUpdate.title = newTitle
-        memoToUpdate.content = newContent
-        savedMemos[index] = memoToUpdate
+        var todoToUpdate = savedTodos[index]
+        todoToUpdate.isCompleted = isCompleted
+        todoToUpdate.content = newContent
+        savedTodos[index] = todoToUpdate
         
-        saveMemos(savedMemos)
+        saveTodos(savedTodos)
     }
     
     // 메모 삭제
     func deleteMemo(at index: Int) {
-        var savedMemos = getMemos()
-        savedMemos.remove(at: index)
-        saveMemos(savedMemos) // 메소드 이름 수정: savedMemos -> saveMemos
+        var savedTodos = getTodos()
+        savedTodos.remove(at: index)
+        saveTodos(savedTodos) // 메소드 이름 수정: savedMemos -> saveMemos
     }
     
     // 메모 저장
-    private func saveMemos(_ memos: [Memo]) { // 메소드 이름 수정: saveMemos -> saveMemos
+    private func saveTodos(_ todos: [Todo]) { // 메소드 이름 수정: saveMemos -> saveMemos
         //JsonEncoder를 사용하여 데이터 저장
-        if let memosData = try? JSONEncoder().encode(memos) {
-            UserDefaults.standard.set(memosData, forKey: memoKey)
+        if let todosData = try? JSONEncoder().encode(todos) {
+            UserDefaults.standard.set(todosData, forKey: todoKey)
         }
     }
 }
