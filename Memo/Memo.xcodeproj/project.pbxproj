@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FB7E6C062A95840000785E66 /* Memo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7E6C052A95840000785E66 /* Memo.swift */; };
+		FB7E6C062A95840000785E66 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7E6C052A95840000785E66 /* Todo.swift */; };
 		FBEB412A2A949CCC00718159 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEB41292A949CCC00718159 /* AppDelegate.swift */; };
 		FBEB412C2A949CCC00718159 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEB412B2A949CCC00718159 /* SceneDelegate.swift */; };
 		FBEB412E2A949CCC00718159 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEB412D2A949CCC00718159 /* ViewController.swift */; };
@@ -20,7 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		FB7E6C052A95840000785E66 /* Memo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memo.swift; sourceTree = "<group>"; };
+		FB7E6C052A95840000785E66 /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
 		FBEB41262A949CCC00718159 /* Memo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Memo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBEB41292A949CCC00718159 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FBEB412B2A949CCC00718159 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -48,7 +48,7 @@
 		FB7E6C072A95840500785E66 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				FB7E6C052A95840000785E66 /* Memo.swift */,
+				FB7E6C052A95840000785E66 /* Todo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -89,8 +89,8 @@
 		FBEB41282A949CCC00718159 /* Memo */ = {
 			isa = PBXGroup;
 			children = (
-				FB7E6C092A95AF2400785E66 /* API */,
 				FBEB41422A94A29000718159 /* Components.swift */,
+				FB7E6C092A95AF2400785E66 /* API */,
 				FB7E6C082A95AEE900785E66 /* Controller */,
 				FB7E6C072A95840500785E66 /* Model */,
 				FBEB41322A949CCC00718159 /* Memo.xcdatamodeld */,
@@ -179,7 +179,7 @@
 				FBEB41462A94D0B000718159 /* APIManager.swift in Sources */,
 				FBEB412E2A949CCC00718159 /* ViewController.swift in Sources */,
 				FBEB41482A95021B00718159 /* TodoViewController.swift in Sources */,
-				FB7E6C062A95840000785E66 /* Memo.swift in Sources */,
+				FB7E6C062A95840000785E66 /* Todo.swift in Sources */,
 				FBEB41432A94A29000718159 /* Components.swift in Sources */,
 				FBEB412A2A949CCC00718159 /* AppDelegate.swift in Sources */,
 				FBEB412C2A949CCC00718159 /* SceneDelegate.swift in Sources */,
