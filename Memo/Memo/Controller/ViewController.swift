@@ -2,7 +2,7 @@ import UIKit
 
 class ViewController: UIViewController {
     let apiManager = APIManager()
-    let todoManager = TodoManager()
+    private let todoManager = TodoManager()
     let IMG_URL = "https://static.wikia.nocookie.net/shinchan/images/d/d8/Shinnoske.jpg/revision/latest?cb=20131020030755&path-prefix=ko"
 
     override func viewDidLoad() {
@@ -22,8 +22,8 @@ class ViewController: UIViewController {
                         stackView.spacing = 10
                         stackView.alignment = .center
                         
-                        let todo = UIButton().homeButton(title: "TODO", target: self, action: #selector(self?.todoBtn))
-                        let done = UIButton().homeButton(title: "DONE", target: self, action: #selector(self?.doneBtn))
+                        let todo = UIButton().homeButton(title: "TODO LIST", target: self, action: #selector(self?.todoBtn))
+                        let done = UIButton().homeButton(title: "CREATE", target: self, action: #selector(self?.doneBtn))
                         
                         stackView.addArrangedSubview(todo)
                         stackView.addArrangedSubview(done)
@@ -75,6 +75,7 @@ class ViewController: UIViewController {
                 let newTodo = Todo(uuid: UUID(), content: content, isCompleted: false)
                 
                 self.todoManager.addTodo(newTodo)
+                print("UUID\(newTodo.uuid)")
             }
         })
 
