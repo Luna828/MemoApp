@@ -31,7 +31,8 @@ extension TodoViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return todoManager.getTodos().count
+        let sectionName = sectionNames[section] // 현재 섹션 이름 가져오기
+        return todoManager.getTodos(for: sectionName).count
     }
     
     // 섹션 헤더 뷰 설정
@@ -63,7 +64,10 @@ extension TodoViewController: UITableViewDataSource {
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 20))
         tableView.tableFooterView = footerView
         footerView.backgroundColor = .white
-            
+        
+        let sectionName = sectionNames[section]
+        let todosInSection = todoManager.getTodos(for: sectionName)
+        
         // 푸터 뷰의 오토레이아웃 설정
         footerView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -76,7 +80,7 @@ extension TodoViewController: UITableViewDataSource {
         let titleLabel = UILabel(frame: footerView.bounds)
         titleLabel.textAlignment = .center
         titleLabel.textColor = .black
-        titleLabel.text = "\(todoManager.getTodos().count)"
+        titleLabel.text = "\(todosInSection.count)"
         footerView.addSubview(titleLabel)
         
         return footerView
@@ -94,9 +98,8 @@ extension TodoViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let todos = todoManager.getTodos() // 메모 배열 가져오기
-        
-        let sectionName = sectionNames[indexPath.section] // 현재 섹션 이름 가져오기
+        let sectionName = sectionNames[indexPath.section]
+        let todos = todoManager.getTodos(for: sectionName)
             
         if sectionName == "Work" {
             if indexPath.row < todos.count {
@@ -140,12 +143,17 @@ extension TodoViewController: UITableViewDataSource {
     @objc func switchValueChanged(_ sender: UISwitch) {
         // 스위치의 상태가 변경되었을 때 처리하는 로직을 구현
         if let cell = sender.superview as? UITableViewCell,
-           let indexPath = tableView.indexPath(for: cell),
-           indexPath.row < todoManager.getTodos().count
+           let indexPath = tableView.indexPath(for: cell)
         {
-            let todo = todoManager.getTodos()[indexPath.row]
-            todoManager.updateTodo(at: indexPath.row, with: todo.content, isCompleted: sender.isOn)
-            tableView.reloadData()
+            let sectionName = sectionNames[indexPath.section]
+            let todosInSection = todoManager.getTodos(for: sectionName)
+            
+            if indexPath.row < todosInSection.count {
+                let todo = todosInSection[indexPath.row]
+                todoManager.updateTodo(at: indexPath.row, with: todo.content, isCompleted: sender.isOn, in: sectionName)
+                tableView.reloadRows(at: [indexPath], with: .automatic)
+            }
         }
     }
+
 }

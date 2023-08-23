@@ -23,10 +23,10 @@ class ViewController: UIViewController {
                         stackView.alignment = .center
                         
                         let todo = UIButton().homeButton(title: "TODO LIST", target: self, action: #selector(self?.todoBtn))
-                        let done = UIButton().homeButton(title: "CREATE", target: self, action: #selector(self?.doneBtn))
+                        let create = UIButton().homeButton(title: "CREATE", target: self, action: #selector(self?.createBtn))
                         
                         stackView.addArrangedSubview(todo)
-                        stackView.addArrangedSubview(done)
+                        stackView.addArrangedSubview(create)
                         
                         self?.view.addSubview(stackView)
                         
@@ -55,7 +55,7 @@ class ViewController: UIViewController {
         navigationController?.pushViewController(todoViewController, animated: true)
     }
 
-    @objc func doneBtn() {
+    @objc func createBtn() {
         print("Go to Done Page")
         
         let alertController = UIAlertController(title: "Todo 생성", message: nil, preferredStyle: .alert)
@@ -65,19 +65,22 @@ class ViewController: UIViewController {
             textField.placeholder = "할 일을 입력해주세요"
         }
         
+        // 사용 가능한 섹션 이름들을 배열에 저장
+        let availableSections = ["Work", "Life"]
+        
         // 알림창 버튼 추가
+        for section in availableSections {
+            alertController.addAction(UIAlertAction(title: section, style: .default) { _ in
+                if let contentField = alertController.textFields?.first,
+                   let content = contentField.text
+                {
+                    let newTodo = Todo(content: content, isCompleted: false)
+                    self.todoManager.addTodo(newTodo, to: section)
+                }
+            })
+        }
+            
         alertController.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
-        alertController.addAction(UIAlertAction(title: "생성", style: .default) { _ in
-            // 사용자 입력 정보 확인 및 처리
-            if let contentField = alertController.textFields?.first,
-               let content = contentField.text
-            {
-                let newTodo = Todo(uuid: UUID(), content: content, isCompleted: false)
-                
-                self.todoManager.addTodo(newTodo)
-                print("UUID\(newTodo.uuid)")
-            }
-        })
 
         // 알림창 표시
         present(alertController, animated: true, completion: nil)
