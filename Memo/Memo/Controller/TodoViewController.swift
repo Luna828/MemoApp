@@ -80,7 +80,7 @@ extension TodoViewController: UITableViewDataSource {
         let titleLabel = UILabel(frame: footerView.bounds)
         titleLabel.textAlignment = .center
         titleLabel.textColor = .black
-        titleLabel.text = "\(todosInSection.count)"
+        titleLabel.text = "Made By Luna"
         footerView.addSubview(titleLabel)
         
         return footerView
@@ -151,9 +151,20 @@ extension TodoViewController: UITableViewDataSource {
             if indexPath.row < todosInSection.count {
                 let todo = todosInSection[indexPath.row]
                 todoManager.updateTodo(at: indexPath.row, with: todo.content, isCompleted: sender.isOn, in: sectionName)
-                tableView.reloadRows(at: [indexPath], with: .automatic)
+
+                if sender.isOn {
+                    let attributes: [NSAttributedString.Key: Any] = [
+                        .strikethroughStyle: NSUnderlineStyle.single.rawValue,
+                        .strikethroughColor: UIColor.lightGray
+                    ]
+                    let attributedString = NSAttributedString(string: todo.content, attributes: attributes)
+                    cell.textLabel?.attributedText = attributedString
+                    cell.textLabel?.textColor = UIColor.lightGray
+                } else {
+                    cell.textLabel?.attributedText = nil
+                    cell.textLabel?.text = todo.content
+                }
             }
         }
     }
-
 }
