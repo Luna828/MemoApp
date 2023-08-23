@@ -8,6 +8,9 @@ class TodoViewController: UIViewController {
     let cellReuseIdentifier = "cell"
     let sectionNames = ["Work", "Life"]
     
+    var workTodos: [Todo] = []
+    var lifeTodos: [Todo] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,8 +25,8 @@ class TodoViewController: UIViewController {
         title = "TODO"
         
         // 섹션별로 Todo 배열을 초기화
-        todoManager.workTodos = todoManager.getTodos().filter { $0.section == "Work" }
-        todoManager.lifeTodos = todoManager.getTodos().filter { $0.section == "Life" }
+        workTodos = todoManager.getWorkTodos()
+        lifeTodos = todoManager.getLifeTodos()
     }
 }
 
@@ -35,7 +38,15 @@ extension TodoViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return todoManager.getTodos().count
+        let sectionName = sectionNames[section]
+        
+        if sectionName == "Work" {
+            return todoManager.workTodos.count
+        } else if sectionName == "Life" {
+            return todoManager.lifeTodos.count
+        }
+        
+        return 0
     }
     
     // 섹션 헤더 뷰 설정
@@ -80,7 +91,7 @@ extension TodoViewController: UITableViewDataSource {
         let titleLabel = UILabel(frame: footerView.bounds)
         titleLabel.textAlignment = .center
         titleLabel.textColor = .black
-        titleLabel.text = "\(todoManager.getTodos().count)"
+        titleLabel.text = "Work 갯수: \(todoManager.getWorkTodos().count)/Life 갯수: \(todoManager.getLifeTodos().count)"
         footerView.addSubview(titleLabel)
         
         return footerView
@@ -98,29 +109,39 @@ extension TodoViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        var todos = todoManager.getTodos() // 메모 배열 가져오기
-
-        let sectionName = sectionNames[indexPath.section] // 현재 섹션 이름 가져오기
-
-        if sectionName == "Work" {
-            todos = todoManager.workTodos
-        } else if sectionName == "Life" {
-            todos = todoManager.lifeTodos
-        }
+        var workTodos = todoManager.getWorkTodos() // 메모 배열 가져오기
+        var lifeTodos = todoManager.getLifeTodos() // 메모 배열 가져오기
         
-        if indexPath.row < todos.count {
-            let todo = todos[indexPath.row]
-            cell.textLabel?.text = todo.content
-
-            let switchView = UISwitch()
-            switchView.isOn = todo.isCompleted
-            switchView.addTarget(self, action: #selector(switchValueChanged(_:)), for: .valueChanged)
-            cell.accessoryView = switchView
+        let sectionName = sectionNames[indexPath.section] // 현재 섹션 이름 가져오기
+        
+        if sectionName == "Work" {
+            workTodos = todoManager.workTodos
+            if indexPath.row < workTodos.count {
+                let todo = workTodos[indexPath.row]
+                cell.textLabel?.text = todo.content
+                
+                let switchView = UISwitch()
+                switchView.isOn = todo.isCompleted
+                switchView.addTarget(self, action: #selector(switchValueChanged(_:)), for: .valueChanged)
+                cell.accessoryView = switchView
+            }
+            return cell
+        } else if sectionName == "Life" {
+            lifeTodos = todoManager.lifeTodos
+            if indexPath.row < lifeTodos.count {
+                let todo = lifeTodos[indexPath.row]
+                cell.textLabel?.text = todo.content
+                
+                let switchView = UISwitch()
+                switchView.isOn = todo.isCompleted
+                switchView.addTarget(self, action: #selector(switchValueChanged(_:)), for: .valueChanged)
+                cell.accessoryView = switchView
+            }
         } else {
             let switchView = UISwitch()
             switchView.isOn = false
             cell.accessoryView = switchView
-
+                
             cell.textLabel?.text = "No todo" // 메모가 없는 경우 대비
             cell.textLabel?.textColor = .gray
         }
@@ -129,25 +150,24 @@ extension TodoViewController: UITableViewDataSource {
 
     @objc func switchValueChanged(_ sender: UISwitch) {
         // 스위치의 상태가 변경되었을 때 처리하는 로직을 구현
-        if let cell = sender.superview as? UITableViewCell,
-           let indexPath = tableView.indexPath(for: cell),
-           indexPath.row < todoManager.getTodos().count
-        {
-            let todo = todoManager.getTodos()[indexPath.row]
-            todoManager.updateTodo(at: indexPath.row, with: todo.content, isCompleted: sender.isOn)
-            print("찍? \(sender.isOn)")
-            tableView.reloadData()
+        if let switchIndex = sender.tag as? Int {
+            let indexPath = IndexPath(row: switchIndex, section: 0) // Assuming the section is 0
+            let sectionName = sectionNames[indexPath.section]
+            var todos: [Todo] = []
+
+            if sectionName == "Work" {
+                todos = workTodos
+            } else if sectionName == "Life" {
+                todos = lifeTodos
+            }
+
+            if switchIndex < todos.count {
+                let todo = todos[switchIndex]
+                todoManager.updateTodo(at: switchIndex, with: todo.content, isCompleted: sender.isOn, section: sectionName)
+
+                // Reload only the specific row to update the switch state
+                tableView.reloadRows(at: [indexPath], with: .none)
+            }
         }
     }
-//    @objc func switchValueChanged(_ sender: UISwitch) {
-//        // 스위치의 상태가 변경되었을 때 처리하는 로직을 구현
-//        if let cell = sender.superview as? UITableViewCell,
-//           let indexPath = tableView.indexPath(for: cell),
-//           indexPath.row < todoManager.getTodos().count
-//        {
-//            let todo = todoManager.getTodos()[indexPath.row]
-//            todoManager.updateTodo(at: indexPath.row, with: todo.content)
-//            tableView.reloadData()
-//        }
-//    }
 }

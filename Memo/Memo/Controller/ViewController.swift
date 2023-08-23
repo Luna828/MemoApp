@@ -23,10 +23,10 @@ class ViewController: UIViewController {
                         stackView.alignment = .center
                         
                         let todo = UIButton().homeButton(title: "TODO LIST", target: self, action: #selector(self?.todoBtn))
-                        let done = UIButton().homeButton(title: "CREATE", target: self, action: #selector(self?.doneBtn))
+                        let create = UIButton().homeButton(title: "CREATE", target: self, action: #selector(self?.createBtn))
                         
                         stackView.addArrangedSubview(todo)
-                        stackView.addArrangedSubview(done)
+                        stackView.addArrangedSubview(create)
                         
                         self?.view.addSubview(stackView)
                         
@@ -81,7 +81,7 @@ class ViewController: UIViewController {
 //        // 알림창 표시
 //        present(alertController, animated: true, completion: nil)
 //    }
-    @objc func doneBtn() {
+    @objc func createBtn() {
         print("Go to Done Page")
         
         let alertController = UIAlertController(title: "Todo 생성", message: nil, preferredStyle: .alert)
@@ -91,7 +91,7 @@ class ViewController: UIViewController {
             textField.placeholder = "Content"
         }
         
-        let pulldownButton = UIAlertAction(title: "섹션 선택", style: .default) { _ in
+        let selectedSectionBtn = UIAlertAction(title: "섹션 선택", style: .default) { _ in
             // 섹션 선택 팝업 표시
             let sectionAlertController = UIAlertController(title: "섹션 선택", message: nil, preferredStyle: .actionSheet)
             
@@ -116,7 +116,7 @@ class ViewController: UIViewController {
         
         // 알림창 버튼 추가
         alertController.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
-        alertController.addAction(pulldownButton)
+        alertController.addAction(selectedSectionBtn)
         
         // 알림창 표시
         present(alertController, animated: true, completion: nil)
