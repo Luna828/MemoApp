@@ -25,6 +25,7 @@
 8. URLSession 사용 이후, Alamofire 사용해보기
 
 ## Memo App 구조
+![스크린샷 2023-08-24 오후 12 45 44](https://github.com/Luna828/MemoApp/assets/93186591/290f20ce-0917-4333-a430-e44dca7516c4)
 
 ## UI 화면
 <table>
