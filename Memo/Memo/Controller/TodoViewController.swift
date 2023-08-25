@@ -1,4 +1,5 @@
 import UIKit
+import SnapKit
 
 class TodoViewController: UIViewController {
     let todoManager = TodoManager()
@@ -49,12 +50,20 @@ extension TodoViewController: UITableViewDataSource {
         
         headerView.addSubview(titleLabel)
         
-        NSLayoutConstraint.activate([
-            titleLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 16),
-            titleLabel.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -16),
-            titleLabel.topAnchor.constraint(equalTo: headerView.topAnchor),
-            titleLabel.bottomAnchor.constraint(equalTo: headerView.bottomAnchor)
-        ])
+        titleLabel.snp.makeConstraints { make in
+            make.leading.equalTo(headerView).offset(16)
+            make.trailing.equalTo(headerView).offset(-16)
+            make.top.equalTo(headerView)
+            make.bottom.equalTo(headerView)
+            
+        }
+        
+//        NSLayoutConstraint.activate([
+//            titleLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 16),
+//            titleLabel.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -16),
+//            titleLabel.topAnchor.constraint(equalTo: headerView.topAnchor),
+//            titleLabel.bottomAnchor.constraint(equalTo: headerView.bottomAnchor)
+//        ])
            
         return headerView
     }
@@ -66,16 +75,24 @@ extension TodoViewController: UITableViewDataSource {
         footerView.backgroundColor = .white
         
         let sectionName = sectionNames[section]
-        let todosInSection = todoManager.getTodos(for: sectionName)
+        //let todosInSection = todoManager.getTodos(for: sectionName)
         
         // 푸터 뷰의 오토레이아웃 설정
         footerView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            footerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            footerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            footerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            footerView.heightAnchor.constraint(equalToConstant: 30) // 푸터 뷰의 높이 설정
-        ])
+        
+        footerView.snp.makeConstraints { make in
+            make.leading.equalTo(view)
+            make.trailing.equalTo(view)
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
+            make.height.equalTo(30) // 푸터 뷰 높이
+        }
+        
+//        NSLayoutConstraint.activate([
+//            footerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//            footerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+//            footerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+//            footerView.heightAnchor.constraint(equalToConstant: 30) // 푸터 뷰의 높이 설정
+//        ])
             
         let titleLabel = UILabel(frame: footerView.bounds)
         titleLabel.textAlignment = .center

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FB63A9482A983F5F003BB126 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = FB63A9472A983F5F003BB126 /* SnapKit */; };
 		FB7E6C062A95840000785E66 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7E6C052A95840000785E66 /* Todo.swift */; };
 		FBEB412A2A949CCC00718159 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEB41292A949CCC00718159 /* AppDelegate.swift */; };
 		FBEB412C2A949CCC00718159 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEB412B2A949CCC00718159 /* SceneDelegate.swift */; };
@@ -39,12 +40,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB63A9482A983F5F003BB126 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FB63A9462A983F5F003BB126 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		FB7E6C072A95840500785E66 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -75,6 +84,7 @@
 			children = (
 				FBEB41282A949CCC00718159 /* Memo */,
 				FBEB41272A949CCC00718159 /* Products */,
+				FB63A9462A983F5F003BB126 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -119,6 +129,9 @@
 			dependencies = (
 			);
 			name = Memo;
+			packageProductDependencies = (
+				FB63A9472A983F5F003BB126 /* SnapKit */,
+			);
 			productName = Memo;
 			productReference = FBEB41262A949CCC00718159 /* Memo.app */;
 			productType = "com.apple.product-type.application";
@@ -405,6 +418,14 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FB63A9472A983F5F003BB126 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FBEB41402A949D1800718159 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		FBEB41322A949CCC00718159 /* Memo.xcdatamodeld */ = {
