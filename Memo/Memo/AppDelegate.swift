@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  Memo
-//
-//  Created by t2023-m0050 on 2023/08/22.
-//
-
 import CoreData
 import UIKit
 
