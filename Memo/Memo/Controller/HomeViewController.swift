@@ -1,16 +1,20 @@
 import UIKit
 
-class ViewController: UIViewController {
+class HomeViewController: UIViewController {
     let apiManager = APIManager()
     private let todoManager = TodoManager()
     let IMG_URL = "https://static.wikia.nocookie.net/shinchan/images/d/d8/Shinnoske.jpg/revision/latest?cb=20131020030755&path-prefix=ko"
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        var imageView: UIImageView?
         view.backgroundColor = UIColor.white
         // 짱구 사진 불러오기
+        urlImage()
+    }
+    
+    private func urlImage() {
+        var imageView: UIImageView?
+        
         apiManager.downloadImage(from: IMG_URL) { [weak self] image in
             if let image = image {
                 DispatchQueue.main.async {
@@ -42,7 +46,7 @@ class ViewController: UIViewController {
             }
         }
     }
-
+    
     @objc func todoBtn() {
         print("Go to Todo Page")
 

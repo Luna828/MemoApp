@@ -5,8 +5,8 @@ class TodoView: UIView {
     private let tableView = UITableView()
     private let todoManager = TodoManager()
     //
-    let cellReuseIdentifier = "cell"
-    let sectionNames = ["Work", "Life"]
+    private let cellReuseIdentifier = "cell"
+    private let sectionNames = ["Work", "Life"]
 
     override init(frame: CGRect) {
         super.init(frame: frame)
