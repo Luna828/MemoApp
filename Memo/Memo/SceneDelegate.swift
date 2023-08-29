@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let window = UIWindow(windowScene: windowScene)
      
-         let mainViewController = ViewController()
+         let mainViewController = HomeViewController()
          let navigationController = UINavigationController(rootViewController: mainViewController)
      
         //window.rootViewController = ViewController() // 시작 VC 작성해주기

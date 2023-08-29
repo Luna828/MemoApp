@@ -28,9 +28,11 @@ class HomeViewController: UIViewController {
                         
                         let todo = UIButton().homeButton(title: "TODO LIST", target: self, action: #selector(self?.todoBtn))
                         let create = UIButton().homeButton(title: "CREATE", target: self, action: #selector(self?.createBtn))
+                        let alamofire = UIButton().homeButton(title: "ALAMOFIRE", target: self, action: #selector(self?.alamofireBtn))
                         
                         stackView.addArrangedSubview(todo)
                         stackView.addArrangedSubview(create)
+                        stackView.addArrangedSubview(alamofire)
                         
                         self?.view.addSubview(stackView)
                         
@@ -47,9 +49,12 @@ class HomeViewController: UIViewController {
         }
     }
     
+    @objc func alamofireBtn(){
+        let alamofireVC = AlamofireViewController()
+        navigationController?.pushViewController(alamofireVC, animated: true)
+    }
+    
     @objc func todoBtn() {
-        print("Go to Todo Page")
-
         guard navigationController != nil else {
             print("❌")
             return
@@ -60,8 +65,6 @@ class HomeViewController: UIViewController {
     }
 
     @objc func createBtn() {
-        print("Go to Done Page")
-        
         let alertController = UIAlertController(title: "Todo 생성", message: nil, preferredStyle: .alert)
         
         // 알림창에 입력 필드 추가

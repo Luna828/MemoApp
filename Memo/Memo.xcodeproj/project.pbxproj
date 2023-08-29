@@ -7,8 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FB2D4CEB2A9D710D007BA3EA /* CatAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2D4CEA2A9D710D007BA3EA /* CatAPI.swift */; };
+		FB2D4CEE2A9D720E007BA3EA /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = FB2D4CED2A9D720E007BA3EA /* Alamofire */; };
+		FB2D4CF12A9D747F007BA3EA /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = FB2D4CF02A9D747F007BA3EA /* Kingfisher */; };
+		FB2D4CF32A9D83C3007BA3EA /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2D4CF22A9D83C3007BA3EA /* APIError.swift */; };
 		FB34562B2A9B9910008BE088 /* TodoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB34562A2A9B9910008BE088 /* TodoView.swift */; };
 		FB63A9482A983F5F003BB126 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = FB63A9472A983F5F003BB126 /* SnapKit */; };
+		FB6F9B742A9CDB85001549DF /* AlamofireViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6F9B732A9CDB85001549DF /* AlamofireViewController.swift */; };
 		FB7E6C062A95840000785E66 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7E6C052A95840000785E66 /* Todo.swift */; };
 		FBEB412A2A949CCC00718159 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEB41292A949CCC00718159 /* AppDelegate.swift */; };
 		FBEB412C2A949CCC00718159 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEB412B2A949CCC00718159 /* SceneDelegate.swift */; };
@@ -22,7 +27,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FB2D4CEA2A9D710D007BA3EA /* CatAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatAPI.swift; sourceTree = "<group>"; };
+		FB2D4CF22A9D83C3007BA3EA /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		FB34562A2A9B9910008BE088 /* TodoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoView.swift; sourceTree = "<group>"; };
+		FB6F9B732A9CDB85001549DF /* AlamofireViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireViewController.swift; sourceTree = "<group>"; };
 		FB7E6C052A95840000785E66 /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
 		FBEB41262A949CCC00718159 /* Memo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Memo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBEB41292A949CCC00718159 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -42,7 +50,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB2D4CF12A9D747F007BA3EA /* Kingfisher in Frameworks */,
 				FB63A9482A983F5F003BB126 /* SnapKit in Frameworks */,
+				FB2D4CEE2A9D720E007BA3EA /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +87,7 @@
 			children = (
 				FBEB412D2A949CCC00718159 /* HomeViewController.swift */,
 				FBEB41472A95021B00718159 /* TodoViewController.swift */,
+				FB6F9B732A9CDB85001549DF /* AlamofireViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -85,6 +96,8 @@
 			isa = PBXGroup;
 			children = (
 				FBEB41452A94D0B000718159 /* APIManager.swift */,
+				FB2D4CEA2A9D710D007BA3EA /* CatAPI.swift */,
+				FB2D4CF22A9D83C3007BA3EA /* APIError.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -142,6 +155,8 @@
 			name = Memo;
 			packageProductDependencies = (
 				FB63A9472A983F5F003BB126 /* SnapKit */,
+				FB2D4CED2A9D720E007BA3EA /* Alamofire */,
+				FB2D4CF02A9D747F007BA3EA /* Kingfisher */,
 			);
 			productName = Memo;
 			productReference = FBEB41262A949CCC00718159 /* Memo.app */;
@@ -173,6 +188,8 @@
 			mainGroup = FBEB411D2A949CCC00718159;
 			packageReferences = (
 				FBEB41402A949D1800718159 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				FB2D4CEC2A9D720E007BA3EA /* XCRemoteSwiftPackageReference "Alamofire" */,
+				FB2D4CEF2A9D747F007BA3EA /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = FBEB41272A949CCC00718159 /* Products */;
 			projectDirPath = "";
@@ -202,9 +219,12 @@
 			files = (
 				FBEB41462A94D0B000718159 /* APIManager.swift in Sources */,
 				FBEB412E2A949CCC00718159 /* HomeViewController.swift in Sources */,
+				FB2D4CEB2A9D710D007BA3EA /* CatAPI.swift in Sources */,
 				FBEB41482A95021B00718159 /* TodoViewController.swift in Sources */,
 				FB7E6C062A95840000785E66 /* Todo.swift in Sources */,
+				FB2D4CF32A9D83C3007BA3EA /* APIError.swift in Sources */,
 				FBEB41432A94A29000718159 /* Components.swift in Sources */,
+				FB6F9B742A9CDB85001549DF /* AlamofireViewController.swift in Sources */,
 				FBEB412A2A949CCC00718159 /* AppDelegate.swift in Sources */,
 				FB34562B2A9B9910008BE088 /* TodoView.swift in Sources */,
 				FBEB412C2A949CCC00718159 /* SceneDelegate.swift in Sources */,
@@ -421,6 +441,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		FB2D4CEC2A9D720E007BA3EA /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		FB2D4CEF2A9D747F007BA3EA /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		FBEB41402A949D1800718159 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit";
@@ -432,6 +468,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		FB2D4CED2A9D720E007BA3EA /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FB2D4CEC2A9D720E007BA3EA /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		FB2D4CF02A9D747F007BA3EA /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FB2D4CEF2A9D747F007BA3EA /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		FB63A9472A983F5F003BB126 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FBEB41402A949D1800718159 /* XCRemoteSwiftPackageReference "SnapKit" */;
