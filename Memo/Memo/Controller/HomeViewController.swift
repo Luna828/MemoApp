@@ -49,7 +49,7 @@ class HomeViewController: UIViewController {
         }
     }
     
-    @objc func alamofireBtn(){
+    @objc func alamofireBtn() {
         let alamofireVC = AlamofireViewController()
         navigationController?.pushViewController(alamofireVC, animated: true)
     }
@@ -81,8 +81,14 @@ class HomeViewController: UIViewController {
                 if let contentField = alertController.textFields?.first,
                    let content = contentField.text
                 {
-                    let newTodo = Todo(content: content, isCompleted: false)
-                    self.todoManager.addTodo(newTodo, to: section)
+                    if content.isEmpty {
+                        let alertEmpty = UIAlertController(title: "할일을 작성해주세요", message: nil, preferredStyle: .alert)
+                        alertEmpty.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
+                        self.present(alertEmpty, animated: true, completion: nil)
+                    } else {
+                        let newTodo = Todo(content: content, isCompleted: false)
+                        self.todoManager.addTodo(newTodo, to: section)
+                    }
                 }
             })
         }
