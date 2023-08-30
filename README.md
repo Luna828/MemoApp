@@ -9,7 +9,7 @@
   - Todo 데이터에 카테고리 `Category` 데이터를 추가해주세요. ✅
   - 카테고리 데이터를 기반으로 TableView의 `Section`을 나누고 `Header`와 `Footer`를 만들어주세요 ✅
 3. 홈화면에 이미지 URL을 활용하여 UIImageView에 표시해주기 ✅
-4. MVC 패턴 도입
+4. MVC 패턴 도입 ✅
 5. 앱의 구조 설명 (다이어그램 사용) ✅
 
 ## 선택 구현 과제
