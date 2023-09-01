@@ -42,8 +42,12 @@
 
 ## 사용 라이브러리
 ```
-
+'SnapKit', '~> 5.6.0'
+'Alamofire', '~> 5.6.4'
 ```
 
 ## 참조
-
+```
+https://github.com/Alamofire/Alamofire
+https://github.com/SnapKit/SnapKit
+```
